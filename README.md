@@ -3,10 +3,8 @@ editframes is a Python-based programmatic video generation toolkit designed to d
 ### 💡 Key Use Cases
 ### Automated Marketing: 
 Automated promo generation for daily flash sales or product launches.
-
 ### Serverless Video Pipelines: 
 Backend service for generating dynamic social media videos at scale without manual video editing tools.
-
 
 ### 🛠️ Overview of Project Modules
 The repository is structured into progressive skill levels, moving from basic script execution to a production-ready containerized microservice:
@@ -24,10 +22,8 @@ python render.py
 ```
 
 ### Intermediate Level
-1. Focus: 
-Sequencing Video Clips & Media.
-2. Functionality: 
-Handles multi-clip sequencing, transitions, and combining multiple media assets into a single cohesive video output.
+1. Focus: Sequencing Video Clips & Media.
+2. Functionality: Handles multi-clip sequencing, transitions, and combining multiple media assets into a single cohesive video output.
 
 ```
 git clone [https://github.com/osamaaslam86004/editframes.git](https://github.com/osamaaslam86004/editframes.git)
@@ -36,10 +32,8 @@ python render.py
 ```
 
 ### Professional & Scalable Level
-1. Focus: 
-Programmatic Batch Generator.
-2. Functionality: 
-Scalable batch rendering system (Example_1 and Example_2) designed to automate video production for multiple input datasets at scale.
+1. Focus: Programmatic Batch Generator.
+2. Functionality: Scalable batch rendering system (Example_1 and Example_2) designed to automate video production for multiple input datasets at scale.
 
 ```
 # Example 1
@@ -53,7 +47,7 @@ cd "Professional/Example_2"
 python render.py
 ```
 
-### FastAPI Cron Job Implementation
+### 🚀 Core Showcase: E-Commerce Video Generator Microservice
 For a real-world scenario, let's build an E-Commerce Product Promo & Flash Sale Short Generator (1080x1920 vertical format for Instagram Reels, TikTok, and YouTube Shorts).
 
 In real-world applications, you don't hardcode text into HTML. Instead, a Python script dynamically injects JSON product data (product title, original price, discounted price, timer, and image/video URL) into an HTML template and automatically renders the final video.
@@ -103,12 +97,8 @@ http://localhost:8000/api/videos/download/product_1.mp4
 ```
 
 ### Summary
-#### Free API: 
-Fetches product details directly from FakeStore API.
-#### Cron Job: 
-APScheduler runs inside the container every Sunday to automatically regenerate videos.
-#### Auto-Cleanup: 
-cleanup_old_videos() wipes the /videos directory before writing new ones.
-#### Rest API: 
-Offers /api/videos and /api/videos/download/{filename} endpoints to download media anywhere.
+1. Free API: Fetches product details directly from FakeStore API.
+2. Cron Job: APScheduler runs inside the container every Sunday to automatically regenerate videos.
+3. Auto-Cleanup: cleanup_old_videos() wipes the /videos directory before writing new ones.
+4. Rest API: Offers /api/videos and /api/videos/download/{filename} endpoints to download media anywhere.
 
