@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Python Editframe Video</title>
+  <!-- Load Editframe Web Components CDN -->
+  <script type="module" src="https://cdn.editframe.com/elements/latest/index.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    .title {
+      color: #38bdf8;
+      font-size: 72px;
+      font-weight: bold;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- 1080p canvas rendered for 5 seconds -->
+  <ef-timegroup mode="fixed" duration="5s" style="width: 1920px; height: 1080px;">
+    <div class="title">Hello from Python + HTML/CSS! 🐍🎬</div>
+  </ef-timegroup>
+</body>
+</html>
