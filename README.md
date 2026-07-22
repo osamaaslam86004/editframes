@@ -1,33 +1,28 @@
-### Beginner: Simple Text Overlay Video
 ```
+<!--- Beginner: Simple Text Overlay Video --->
 git clone [https://github.com/osamaaslam86004/editframes.git](https://github.com/osamaaslam86004/editframes.git)
 cd "Beginner"
 python render.py
-```
 
-### Intermediate: Sequencing Video Clips & Media
-```
+
+<!--- Intermediate: Sequencing Video Clips & Media --->
 git clone [https://github.com/osamaaslam86004/editframes.git](https://github.com/osamaaslam86004/editframes.git)
 cd "Intermediate"
 python render.py
-```
 
-### Professional & Scalable: Programmatic Batch Generator
-#### Example 1
-```
+<!--- Professional & Scalable: Programmatic Batch Generator --->
+<!--- Example 1 --->
 git clone [https://github.com/osamaaslam86004/editframes.git](https://github.com/osamaaslam86004/editframes.git)
 cd "Professional/Example_1"
 python render.py
-```
 
-#### Example 2
-```
+<!--- Example 2 --->
 git clone [https://github.com/osamaaslam86004/editframes.git](https://github.com/osamaaslam86004/editframes.git)
 cd "Professional/Example_2"
 python render.py
 ```
 
-### FastAPI cronjob Implementation
+### FastAPI Cron Job Implementation
 For a real-world scenario, let's build an E-Commerce Product Promo & Flash Sale Short Generator (1080x1920 vertical format for Instagram Reels, TikTok, and YouTube Shorts).
 
 In real-world applications, you don't hardcode text into HTML. Instead, a Python script dynamically injects JSON product data (product title, original price, discounted price, timer, and image/video URL) into an HTML template and automatically renders the final video.
@@ -47,17 +42,15 @@ git clone [https://github.com/osamaaslam86004/editframes.git](https://github.com
 cd "E-Commerce Product Promo & Flash Sale Short Generator"`
 docker build -t video-generator .
 docker run -d -p 8000:8000 --name promo-video-service video-generator
-```
 
-### Testing Your Endpoints
-```
+<!--- Testing Your Endpoints --->
 1. Trigger Immediate Video Generation
 curl -X POST http://localhost:8000/api/generate-now
 
 2. List Newly Generated Videos
 curl http://localhost:8000/api/videos
 
-# Response 
+<!--- Response ---> 
 {
   "count": 3,
   "videos": [
