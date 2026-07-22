@@ -1,3 +1,24 @@
+### Beginner: Simple Text Overlay Video
+`
+git clone https://github.com/osamaaslam86004/editframes.git
+cd "Beginner"
+python render.py
+`
+
+### Intermediate: Sequencing Video Clips & Media
+`
+git clone https://github.com/osamaaslam86004/editframes.git
+cd "Intermediate"
+python render.py
+`
+
+### Professional & Scalable: Programmatic Batch Generator
+`
+git clone https://github.com/osamaaslam86004/editframes.git
+cd "Professional"
+python render.py
+`
+
 For a real-world scenario, let's build an E-Commerce Product Promo & Flash Sale Short Generator (1080x1920 vertical format for Instagram Reels, TikTok, and YouTube Shorts).
 
 In real-world applications, you don't hardcode text into HTML. Instead, a Python script dynamically injects JSON product data (product title, original price, discounted price, timer, and image/video URL) into an HTML template and automatically renders the final video.
