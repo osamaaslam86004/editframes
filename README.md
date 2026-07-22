@@ -13,12 +13,21 @@ python render.py
 `
 
 ### Professional & Scalable: Programmatic Batch Generator
+#### Example 1
 `
 git clone https://github.com/osamaaslam86004/editframes.git
-cd "Professional"
+cd "Professional/Example_1"
 python render.py
 `
 
+#### Example 2
+`
+git clone https://github.com/osamaaslam86004/editframes.git
+cd "Professional/Example_2"
+python render.py
+`
+
+### FastAPI cronjob Implementation
 For a real-world scenario, let's build an E-Commerce Product Promo & Flash Sale Short Generator (1080x1920 vertical format for Instagram Reels, TikTok, and YouTube Shorts).
 
 In real-world applications, you don't hardcode text into HTML. Instead, a Python script dynamically injects JSON product data (product title, original price, discounted price, timer, and image/video URL) into an HTML template and automatically renders the final video.
@@ -31,3 +40,54 @@ The script automatically generates high-resolution 1080x1920 vertical MP4s with 
 
 #### Pure Python Automation: 
 Scalable for serverless workers, AWS Lambda, or automated daily cron jobs!
+
+### How to Run It
+`
+git clone https://github.com/osamaaslam86004/editframes.git
+cd "E-Commerce Product Promo & Flash Sale Short Generator"
+
+# Build the image
+docker build -t video-generator .
+
+# Run the container
+docker run -d -p 8000:8000 --name promo-video-service video-generator
+`
+### Testing Your Endpoints
+1. Trigger Immediate Video Generation
+`curl -X POST http://localhost:8000/api/generate-now`
+
+2. List Newly Generated Videos
+`curl http://localhost:8000/api/videos
+
+# Response
+{
+  "count": 3,
+  "videos": [
+    {
+      "filename": "product_1.mp4",
+      "download_url": "/api/videos/download/product_1.mp4"
+    },
+    {
+      "filename": "product_2.mp4",
+      "download_url": "/api/videos/download/product_2.mp4"
+    }
+  ]
+}
+`
+
+3. Download Video directly in browser or terminal
+`http://localhost:8000/api/videos/download/product_1.mp4`
+
+### Summary
+#### Free API: 
+Fetches product details directly from FakeStore API.
+
+#### Cron Job: 
+APScheduler runs inside the container every Sunday to automatically regenerate videos.
+
+#### Auto-Cleanup: 
+cleanup_old_videos() wipes the /videos directory before writing new ones.
+
+#### Rest API: 
+Offers /api/videos and /api/videos/download/{filename} endpoints to download media anywhere.
+
