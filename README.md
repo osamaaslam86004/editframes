@@ -1,9 +1,9 @@
 editframes is a Python-based programmatic video generation toolkit designed to demonstrate and implement automated video rendering workflows using Python, HTML templates, and Docker.
 
 ### 💡 Key Use Cases
-### Automated Marketing: 
+#### Automated Marketing: 
 Automated promo generation for daily flash sales or product launches.
-### Serverless Video Pipelines: 
+#### Serverless Video Pipelines: 
 Backend service for generating dynamic social media videos at scale without manual video editing tools.
 
 ### 🛠️ Overview of Project Modules
