@@ -102,3 +102,6 @@ http://localhost:8000/api/videos/download/product_1.mp4
 3. Auto-Cleanup: cleanup_old_videos() wipes the /videos directory before writing new ones.
 4. Rest API: Offers /api/videos and /api/videos/download/{filename} endpoints to download media anywhere.
 
+#### Convert Repo to .md for Model Training
+`npx repomix --remote https://github.com/osamaaslam86004/editframes.git --style markdown`
+
