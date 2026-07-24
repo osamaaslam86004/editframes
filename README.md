@@ -99,8 +99,9 @@ http://localhost:8000/api/videos/download/product_1.mp4
 ### Summary
 1. Free API: Fetches product details directly from FakeStore API.
 2. Cron Job: APScheduler runs inside the container every Sunday to automatically regenerate videos.
-3. Auto-Cleanup: cleanup_old_videos() wipes the /videos directory before writing new ones.
+3. Auto-Cleanup: wipes the /videos directory before writing new ones.
 4. Rest API: Offers /api/videos and /api/videos/download/{filename} endpoints to download media anywhere.
+5. Added audio overlay using [Kokoro TTS model](https://github.com/hexgrad/kokoro.git)
 
 #### Convert Repo to .md for Model Training
 `npx repomix --remote https://github.com/osamaaslam86004/editframes.git --style markdown`
