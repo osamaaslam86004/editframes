@@ -1,23 +1,22 @@
-# Official Playwright Python image (includes Chromium & OS dependencies)
+ENV NO_NNPACK=1
+
 FROM mcr.microsoft.com/playwright/python:v1.44.0-jammy
 
-# Set working directory
 WORKDIR /app
 
-# Copy dependency definition
-COPY requirements.txt .
+# Install system dependencies (FFmpeg for video/audio mixing, eSpeak NG for KittenTTS phonemes)
+RUN apt-get update && apt-get install -y ffmpeg espeak-ng && rm -rf /var/lib/apt/lists/*
 
-# Install Python requirements
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application files
+# Download spaCy English model for text preprocessing in KittenTTS
+RUN python -m spacy download en_core_web_sm
+
 COPY . .
 
-# Create directory for output videos
-RUN mkdir -p /app/videos
+RUN mkdir -p /app/videos /app/static
 
-# Expose port 8000 for FastAPI
 EXPOSE 8000
 
-# Start Uvicorn web server
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
