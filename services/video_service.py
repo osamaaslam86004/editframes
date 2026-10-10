@@ -1,9 +1,15 @@
 import os
 import subprocess
 from playwright.async_api import async_playwright
-from core.config import BASE_DIR, VIDEOS_DIR, TEMPLATE_PATH
+from core.config import get_settings
 from services.tts_service import synthesize_voiceover, get_audio_duration
 from core.websocket import manager
+
+settings = get_settings()
+
+VIDEOS_DIR = settings.videos_dir
+BASE_DIR = settings.base_dir
+TEMPLATE_PATH = settings.template_path
 
 
 def overlay_audio_to_video(video_path: str, audio_path: str, output_path: str):

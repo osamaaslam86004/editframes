@@ -1,9 +1,12 @@
 import asyncio
+import httpx
 import logging
 
-from app.core.config import get_settings
-from app.services.screening_service import process_screening
-from app.workers.celery_app import celery_app
+from playwright.async_api import async_playwright
+
+from core.config import get_settings
+from workers.celery_app import celery_app
+from services.video_service import cleanup_old_videos, render_product_video_sync
 
 logger = logging.getLogger(__name__)
 settings = get_settings()
@@ -11,22 +14,38 @@ settings = get_settings()
 
 @celery_app.task(
     bind=True,
-    name="app.workers.tasks.screen_candidate",
+    name="app.workers.tasks.generate_weekly_videos_task",
     autoretry_for=(Exception,),
     retry_backoff=True,
     retry_jitter=True,
     max_retries=settings.task_max_retries,
 )
-def screen_candidate(self, screening_id: str) -> dict[str, str]:
-    """Process one persisted screening record. Retries are bounded in Celery configuration."""
+def generate_weekly_videos_task(self):
     try:
-        asyncio.run(process_screening(__import__("uuid").UUID(screening_id)))
+        print("🧹 Cleaning up old promo videos...")
+        cleanup_old_videos()
+
+        print("🌐 Fetching product payload from FakeStore API...")
+        with httpx.Client() as client:
+            response = client.get("https://fakestoreapi.com/products?limit=3")
+            products = response.json()
+
+        # Run async Playwright rendering within the celery sync worker context
+        async def run_pipeline():
+            async with async_playwright() as p:
+                browser = await p.chromium.launch(
+                    headless=True, args=["--no-sandbox", "--disable-setuid-sandbox"]
+                )
+                for idx, product in enumerate(products, 1):
+                    await render_product_video_sync(
+                        product, browser, idx, len(products)
+                    )
+                await browser.close()
+
+        asyncio.run(run_pipeline())
+        print("🎉 All AI Voiceover promo reels generated successfully via Celery!")
+        return {"status": "success", "count": len(products)}
+
     except Exception as exc:
-        logger.warning(
-            "screening task will retry/fail id=%s retries=%s exception_type=%s",
-            screening_id,
-            self.request.retries,
-            type(exc).__name__,
-        )
-        raise
-    return {"screening_id": screening_id, "status": "processed"}
+        print(f"❌ PIPELINE ERROR: {str(exc)}")
+        raise self.retry(exc=exc, countdown=60)
